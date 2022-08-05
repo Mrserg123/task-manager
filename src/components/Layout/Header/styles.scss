@@ -1,0 +1,27 @@
+
+header{
+background-color: #474A51;
+height: 50px;
+box-shadow: 2px 2px 2px 2px rgba(11, 11, 17, 0.582);
+padding: 0 20px;
+color:white;
+font-weight: 500;
+text-transform: uppercase;
+display: flex;
+align-items: center;
+}
+.logo{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    fill: snow;
+}
+.logo:hover{
+    cursor: pointer;
+    animation: logo 2.5s forwards;
+}
+  
+  @keyframes logo {
+    0% {transform: rotate(0.0turn);}
+    100% {transform: rotate(0.5turn);}
+  }

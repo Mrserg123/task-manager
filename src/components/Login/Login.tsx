@@ -3,9 +3,55 @@ import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer";
 import { useState } from "react";
 import "../Login/styles.scss";
+import { useAppDispatch, useTypedSelector } from "../../redux/hooks/hooks";
+import { addUser, logIn } from "../../redux/slices/userSlice";
+import { useNavigate } from "react-router-dom";
+interface User {
+  login: string;
+  pass: string;
+}
 const Login: React.FC = () => {
+  let navigate = useNavigate();
+  // const stateUsers = useTypedSelector((state) => state.users);
+  // console.log(stateUsers);
+  const dispatch = useAppDispatch();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState({
+    isRegister: false,
+    label: "",
+    isError: false,
+  });
+  const users = JSON.parse(localStorage.users);
+  function auth() {
+    let findUser = users.find((user: User) => user.login === login);
+    if (findUser) {
+      setError({ ...error, isError: true, label: "Login exists" });
+      dispatch(logIn({ login, password }));
+
+      if (findUser.pass === password) {
+        return navigate("/tasks");
+      }
+    } else {
+      setLogin("");
+      setPassword("");
+      setError({ ...error, label: "User registered" });
+      dispatch(addUser({ login, password }));
+    }
+
+    // } else {
+    // setLogin("");
+    // setPassword("");
+    // setError({ ...error, label: "User registered" });
+    //   dispatch(addUser({ login, password }));
+    // }
+  }
+
+  React.useEffect(() => {
+    if (login) {
+      setError({ ...error, isRegister: false, isError: false, label: "" });
+    }
+  }, [login]);
   return (
     <>
       <Header />
@@ -17,17 +63,43 @@ const Login: React.FC = () => {
             >
               Please, log in or sign up
             </h4>
+
             <input
               type="text"
               placeholder="Login"
-              onChange={(e) => setLogin(e.target.value)}
+              value={login}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setLogin(e.target.value)
+              }
+              className={error.isError && "input_error"}
             />
+
             <input
               type="password"
               placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
+              className={error.isError && "input_error"}
             />
-            <button className="btn">Login/Sign in</button>
+            {error.label && (
+              <span
+                style={{
+                  margin: "-22px 0 20px 0",
+                  color: error.isError ? "red" : "green",
+                }}
+              >
+                <b>{error.label}</b>
+              </span>
+            )}
+            <button
+              disabled={login && password ? false : true}
+              className="btn"
+              onClick={() => auth()}
+            >
+              Login/Sign in
+            </button>
           </div>
         </div>
       </main>

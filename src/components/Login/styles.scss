@@ -94,3 +94,12 @@ input[type=password]{
 	color: #444;
 	cursor: not-allowed;
 }
+.input_error_text{
+	margin: "-25px 0 20px 0"
+}
+.input_error{
+	border: 2px red solid !important;
+}
+.input_success{
+	border:2px green solid !important
+}

@@ -2,7 +2,14 @@ import React from "react";
 import Header from "../Layout/Header/Header";
 import "../Tasks/styles.scss";
 import userImg from "../../assets/images/user-icon.jpg";
+import { useNavigate } from "react-router-dom";
+import { useTypedSelector, useAppDispatch } from "../../redux/hooks/hooks";
+import { logOut } from "../../redux/slices/userSlice";
 const Task: React.FC = () => {
+  let navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const state = useTypedSelector((state) => state.users);
+  console.log(state);
   const arr = [
     {
       id: 0,
@@ -20,6 +27,10 @@ const Task: React.FC = () => {
       checked: false,
     },
   ];
+  function signOut() {
+    dispatch(logOut());
+    navigate("/");
+  }
   return (
     <>
       <Header />
@@ -29,8 +40,10 @@ const Task: React.FC = () => {
           <div className="user_block_image">
             <img src={userImg} width="200px"></img>
           </div>
-          <div className="user_block_name">Name</div>
-          <div>signOut</div>
+          <div className="user_block_name">{localStorage.login}</div>
+          <button className="signout_btn" onClick={() => signOut()}>
+            Sign out
+          </button>
         </div>
         <div className="task_block">
           <div className="task_information">

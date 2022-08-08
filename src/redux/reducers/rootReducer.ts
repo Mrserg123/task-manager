@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import weatherSlice from '../slices/userSlice';
+import userSlice from '../slices/userSlice';
 
 const reducers = combineReducers({
-weather: weatherSlice
+users: userSlice
 });
 
 export default reducers;

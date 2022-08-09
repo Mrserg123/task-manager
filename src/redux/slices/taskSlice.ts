@@ -1,21 +1,18 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { store } from "../store";
+import { createSlice } from "@reduxjs/toolkit";
 
-
-export interface taskState {
+export interface TaskState {
   date: string;
   description: string;
   login: string;
   checked: boolean;
   id: number;
 }
-interface AllTask{
-  allTasks:Array<object>
-
+interface AllTask {
+  allTasks: Array<object>;
 }
 
 const initialState: AllTask = {
- allTasks:[]
+  allTasks: [],
 };
 
 export const taskSlice = createSlice({
@@ -28,32 +25,30 @@ export const taskSlice = createSlice({
       const description = action.payload.description;
       const login = action.payload.login;
       const checked = false;
-      const id = tasks[tasks.length - 1]? tasks[tasks.length - 1].id+1 : 1;
-      console.log(tasks[tasks.length - 1],'fsdfsdfsdfsdfdsfsd');
+      const id = tasks[tasks.length - 1] ? tasks[tasks.length - 1].id + 1 : 1;
       localStorage.setItem(
         "tasks",
         JSON.stringify([...tasks, { date, description, login, checked, id }])
       );
-    
-      state.allTasks=([...state.allTasks,{ date, description, login, checked, id }])
+      state.allTasks = [
+        ...state.allTasks,
+        { date, description, login, checked, id },
+      ];
     },
     delTask: (state, action) => {
-      let id = action.payload.id
-      let result = state.allTasks.filter((item: taskState) => item.id!==id)
+      let id = action.payload.id;
+      let result = state.allTasks.filter((item: TaskState) => item.id !== id);
       localStorage.tasks = JSON.stringify(result);
-      state.allTasks = result
+      state.allTasks = result;
     },
     getAllTasks: (state, action) => {
-      let tasks = action.payload
-      state.allTasks = tasks
-  console.log(tasks,action.payload,'SLICE')
+      let tasks = action.payload;
+      state.allTasks = tasks;
     },
-
-    taskDone:(state, action) => {
-      let tasks = action.payload.tasks
-      let id = action.payload.id
-     
-      let result = tasks.map((item: taskState) => {
+    taskDone: (state, action) => {
+      let tasks = action.payload.tasks;
+      let id = action.payload.id;
+      let result = tasks.map((item: TaskState) => {
         if (item.id === id) {
           item.checked = !item.checked;
           return item;
@@ -62,12 +57,13 @@ export const taskSlice = createSlice({
         }
       });
       localStorage.tasks = JSON.stringify(result);
-      state.allTasks = tasks.filter((task:any)=>task.login===localStorage.login)
-  console.log(action.payload,'SLICE')
+      state.allTasks = tasks.filter(
+        (task: any) => task.login === localStorage.login
+      );
     },
   },
 });
 
-export const { addTask, delTask,getAllTasks,taskDone } = taskSlice.actions;
+export const { addTask, delTask, getAllTasks, taskDone } = taskSlice.actions;
 
 export default taskSlice.reducer;

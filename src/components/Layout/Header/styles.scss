@@ -1,27 +1,38 @@
+$background-header: #474a51;
+$background-logo_fill: snow;
+$box-shadow-header: 2px 2px 2px 2px rgba(11, 11, 17, 0.582);
 
-header{
-background-color: #474A51;
-height: 50px;
-box-shadow: 2px 2px 2px 2px rgba(11, 11, 17, 0.582);
-padding: 0 20px;
-color:white;
-font-weight: 500;
-text-transform: uppercase;
-display: flex;
-align-items: center;
+@mixin transform($property) {
+  transform: $property;
 }
-.logo{
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    fill: snow;
+
+header {
+  background-color: $background-header;
+  height: 50px;
+  box-shadow: $box-shadow-header;
+  padding: 0 20px;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
 }
-.logo:hover{
-    cursor: pointer;
-    animation: logo 2.5s forwards;
+.logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  fill: $background-logo_fill;
 }
-  
-  @keyframes logo {
-    0% {transform: rotate(0.0turn);}
-    100% {transform: rotate(0.5turn);}
+.logo:hover {
+  cursor: pointer;
+  animation: logo 2.5s forwards;
+}
+
+@keyframes logo {
+  0% {
+    @include transform(rotate(0turn));
   }
+  100% {
+    @include transform(rotate(0.5turn));
+  }
+}

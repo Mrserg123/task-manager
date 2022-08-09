@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../Layout/Header/Header";
 import "../Tasks/styles.scss";
 import userImg from "../../assets/images/user-icon.jpg";

@@ -13,7 +13,6 @@ const plugins = [
     filename: "index.html",
     manifest: "./public/manifest.json",
   }),
-  //   new webpack.EnvironmentPlugin(["REACT_APP_WEATHER_API"]),
 ];
 
 module.exports = {
@@ -54,14 +53,7 @@ module.exports = {
 
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          // Creates `style` nodes from JS strings
-          "style-loader",
-          // Translates CSS into CommonJS
-          "css-loader",
-          // Compiles Sass to CSS
-          "sass-loader",
-        ],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.tsx?$/,

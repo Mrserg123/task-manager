@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Login from "./components/Login/Login";
 import Task from "./components/Tasks/Tasks";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -45,7 +45,7 @@ interface Props {
 
 const PrivateRoute: React.FC<Props> = ({ children, status }) => {
   const dispatch = useAppDispatch();
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(checkLogin());
   }, [status]);
 

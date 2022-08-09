@@ -3,13 +3,15 @@ import Header from "../Layout/Header/Header";
 import Footer from "../Layout/Footer/Footer";
 import { useState } from "react";
 import "../Login/styles.scss";
-import { useAppDispatch, useTypedSelector } from "../../redux/hooks/hooks";
+import { useAppDispatch } from "../../redux/hooks/hooks";
 import { addUser, logIn } from "../../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+
 interface User {
   login: string;
   pass: string;
 }
+
 const Login: React.FC = () => {
   let navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -20,6 +22,7 @@ const Login: React.FC = () => {
     label: "",
     isError: false,
   });
+
   const users = JSON.parse(localStorage.users);
   function auth() {
     let findUser = users.find((user: User) => user.login === login);
@@ -29,6 +32,8 @@ const Login: React.FC = () => {
 
       if (findUser.pass === password) {
         return navigate("/tasks");
+      } else {
+        setError({ ...error, isError: true, label: "Password incorrect" });
       }
     } else {
       setLogin("");
@@ -74,7 +79,7 @@ const Login: React.FC = () => {
               }
               className={error.isError ? "input_error" : ""}
             />
-            {error.label && (
+            {error.label && login && (
               <span
                 style={{
                   margin: "-22px 0 20px 0",

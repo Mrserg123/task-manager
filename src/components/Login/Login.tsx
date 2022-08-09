@@ -62,7 +62,7 @@ const Login: React.FC = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setLogin(e.target.value)
               }
-              className={error.isError && "input_error"}
+              className={error.isError ? "input_error" : ""}
             />
 
             <input
@@ -72,7 +72,7 @@ const Login: React.FC = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setPassword(e.target.value)
               }
-              className={error.isError && "input_error"}
+              className={error.isError ? "input_error" : ""}
             />
             {error.label && (
               <span

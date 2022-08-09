@@ -6,8 +6,10 @@ import { useTypedSelector, useAppDispatch } from "./redux/hooks/hooks";
 import { checkLogin } from "./redux/slices/userSlice";
 
 function App() {
-  if (localStorage.users === undefined && localStorage.tasks === undefined) {
+  if (localStorage.users === undefined) {
     localStorage.users = JSON.stringify([]);
+  }
+  if (localStorage.tasks === undefined) {
     localStorage.tasks = JSON.stringify([]);
   }
   const user = useTypedSelector((state) => state.users);

@@ -12,8 +12,6 @@ interface User {
 }
 const Login: React.FC = () => {
   let navigate = useNavigate();
-  // const stateUsers = useTypedSelector((state) => state.users);
-  // console.log(stateUsers);
   const dispatch = useAppDispatch();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -38,13 +36,6 @@ const Login: React.FC = () => {
       setError({ ...error, label: "User registered" });
       dispatch(addUser({ login, password }));
     }
-
-    // } else {
-    // setLogin("");
-    // setPassword("");
-    // setError({ ...error, label: "User registered" });
-    //   dispatch(addUser({ login, password }));
-    // }
   }
 
   React.useEffect(() => {

@@ -50,11 +50,13 @@
 .task_check {
   width: 23px;
   height: 23px;
+  min-width:25px;
 }
 .task_item {
   display: flex;
   align-items: center;
   margin: 10px 0 15px 0;
+  word-break: break-all;
 }
 .task_btn {
   margin-left: 15px;
@@ -63,9 +65,10 @@
   cursor: pointer;
   width: 20px;
   fill: rgb(236, 9, 9);
+  min-width: 20px
 }
 .task_btn:hover {
-  animation: task_btn_ico 2s linear infinite alternate;
+  animation: task_btn_ico 1s linear infinite alternate;
 }
 @keyframes task_btn_ico {
   0% {

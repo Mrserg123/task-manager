@@ -6,8 +6,9 @@ import { useTypedSelector, useAppDispatch } from "./redux/hooks/hooks";
 import { checkLogin } from "./redux/slices/userSlice";
 
 function App() {
-  if (localStorage.users === undefined) {
+  if (localStorage.users === undefined && localStorage.tasks === undefined) {
     localStorage.users = JSON.stringify([]);
+    localStorage.tasks = JSON.stringify([]);
   }
   const user = useTypedSelector((state) => state.users);
   return (
@@ -42,7 +43,6 @@ interface Props {
 
 const PrivateRoute: React.FC<Props> = ({ children, status }) => {
   const dispatch = useAppDispatch();
-  console.log(status);
   useEffect(() => {
     dispatch(checkLogin());
   }, [status]);

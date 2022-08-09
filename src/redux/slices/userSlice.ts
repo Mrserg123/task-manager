@@ -99,7 +99,7 @@ console.log('check')
       let findUser = users.find(
         (item: { login: string }) => item.login === login
       );
-      if (findUser) {
+      if (findUser.pass===pass) {
         localStorage.setItem("login", login);
         state.login = login;
         state.pass = pass;

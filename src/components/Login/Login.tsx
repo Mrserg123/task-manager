@@ -79,7 +79,7 @@ const Login: React.FC = () => {
               }
               className={error.isError ? "input_error" : ""}
             />
-            {error.label && login && (
+            {error.label && (
               <span
                 style={{
                   margin: "-22px 0 20px 0",

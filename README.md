@@ -2,12 +2,14 @@
 
 ### Creat folder /dist (build)
 
-npm run build: "webpack",
-npm run build-prod: "webpack --mode=production",
-In the project directory, you can run:
+- **npm run build:** _"webpack"_,
+- **npm run build-prod:** _"webpack --mode=production"_,</br>
+  In the project directory, you can run:
+
+### `npm install`
 
 ### `npm start`
 
-start: "webpack serve",
-Runs the app in the development mode.\
-Open [http://localhost:8080]
+- **start**: _"webpack serve"_,
+  Runs the app in the development mode.\
+   Open [http://localhost:8080]
